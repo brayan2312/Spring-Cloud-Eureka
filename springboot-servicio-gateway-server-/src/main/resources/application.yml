@@ -49,6 +49,23 @@ spring:
           - AddResponseHeader=token-response, 654321
           - SetResponseHeader=Content-Type,application/json
           - AddRequestParameter=nombre, brayan
+      - id: servicio-usuarios
+        uri: lb://servicio-usuarios
+        predicates:
+          - Path=/api/usuarios/**
+        filters:
+          - StripPrefix=2
+      - id: servicio-oauth
+        uri: lb://servicio-oauth
+        predicates:
+          - Path=/api/security/**
+        filters:
+          - StripPrefix=2        
+          
+          
+          
+          
+          
                     
 # - name: Ejemplo
 #            args:
